@@ -10,14 +10,14 @@ function getBalance(account){
 }
     //getBalance
         //Display total of funds in account
-function makeWithdraw(){
+function makeWithdraw(wallet){
     let request = prompt("How much would you like to withdraw?");
     if(checkOverdraft(request, account) === true && checkInterval(request) === true){
         let account = account - request;
         let wallet = wallet + request;
         console.log(`Your current balance is ${account}`);
         mainMenu();
-        return account;
+        return account && wallet;
     } else if(checkOverdraft(request, account) === false){
         console.log("Look, buddy, here's how this works; first, you put money IN the bank, THEN you can take money OUT of it!");
         makeWithdraw(request);
@@ -34,7 +34,7 @@ function makeDeposit(){
         let wallet = wallet - request;
         mainMenu();
         console.log(`Your current balance is ${account}`);
-        return account;
+        return account && wallet;
     }else{
         console.log("Oof, you don't even have THAT much?! You should really think about a career change...");
     }
@@ -62,23 +62,12 @@ function verifyPIN(pin){
         return false;
     }
 }
-    //Withdraw
-        //Prompt for deposit amount to wallet.js
-        //If (amount given in account.withdraw.prompt > amount in wallet.js {
-            //console.log(Insufficient Funds)
-            //})
-            //withdraw from wallet.js, deposit to account.js
-    //Deposit            
-        //Prompt for withdrawal amount from wallet.js
-            //If (amount given in account.withdraw.prompt > amount in wallet.js {
-                //console.log(Insufficient Funds)
-                //})
-                //withdraw from account.js, deposit to wallet.js
+
 module.exports = {
-    balance: getBalance(),
-    withdraw: makeWithdraw(),
-    deposit: makeDeposit(),
-    overdraft: checkOverdraft(),
-    interval: checkInterval(),
-    verify: verifyPIN()
+    balance: getBalance,
+    withdraw: makeWithdraw,
+    deposit: makeDeposit,
+    overdraft: checkOverdraft,
+    interval: checkInterval,
+    verify: verifyPIN
 }
