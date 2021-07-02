@@ -1,5 +1,7 @@
 //Holds user's account data
-    //Console.log balance
+let balance = 2500
+const pin = 1324
     module.exports = {
-        account: 2500
+        balance: balance,
+        pin: pin
     }

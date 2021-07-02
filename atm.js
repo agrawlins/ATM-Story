@@ -1,24 +1,22 @@
 //Holds account options
-const account = require('./account');
-const wallet = require('./wallet');
+const {balance, pin,} = require('./account');
+const {wallet} = require('./wallet');
 
 
 
 //Once called, begin account menu
-function getBalance(account){
-    console.log(`Your current balance is ${account}`);
+function getBalance(balance){
+    console.log(`Your current balance is ${balance}`);
 }
-    //getBalance
-        //Display total of funds in account
-function makeWithdraw(wallet){
+
+function makeWithdraw(){
     let request = prompt("How much would you like to withdraw?");
-    if(checkOverdraft(request, account) === true && checkInterval(request) === true){
-        let account = account - request;
+    if(checkOverdraft(request, balance) === true && checkInterval(request) === true){
+        let balance = balance - request;
         let wallet = wallet + request;
-        console.log(`Your current balance is ${account}`);
-        mainMenu();
-        return account && wallet;
-    } else if(checkOverdraft(request, account) === false){
+        console.log(`Your current balance is ${balance}`);
+        return balance && wallet;
+    } else if(checkOverdraft(request, balance) === false){
         console.log("Look, buddy, here's how this works; first, you put money IN the bank, THEN you can take money OUT of it!");
         makeWithdraw(request);
     } else if(checkInterval(request) === false){
@@ -29,11 +27,10 @@ function makeWithdraw(wallet){
 
 function makeDeposit(){
     let request = prompt("How much would you like to deposit?");
-    if(checkOverdraft(request, wallet) === true){
-        let account = account + request;
+    if(checkOverdraft(request, balance) === true){
+        let balance = balance + request;
         let wallet = wallet - request;
-        mainMenu();
-        console.log(`Your current balance is ${account}`);
+        console.log(`Your current balance is ${balance}`);
         return account && wallet;
     }else{
         console.log("Oof, you don't even have THAT much?! You should really think about a career change...");
@@ -49,14 +46,14 @@ function checkOverdraft(request, depositor){
 }
 
 function checkInterval(request){
-    if(parseInt(request)%20 === true){
+    if(parseInt(request) % 20 === 0){
         return true;
     } else {
         return false;
     }
 }
-function verifyPIN(pin){
-    if(parseInt(pin) === 1324){
+function verifyPIN(string){
+    if(parseInt(string) === 1324){
         return true;
     } else {
         return false;
