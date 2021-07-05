@@ -1,6 +1,6 @@
 //const {something} = require('./somethingElse'); <== just a formula for 
 const account = require('./account');
-const { balance, withdraw, deposit, verify } = require('./atm');
+const { balance, withdraw, deposit, verify, requestWithdraw, requestDeposit } = require('./atm');
 const wallet = require('./wallet');
 const prompt = require('prompt-sync')();
 
@@ -22,9 +22,9 @@ function subMenu(username){
         case "1":
             balance();
         case "2":
-            withdraw();
+            withdraw(requestWithdraw);
         case "3":
-            deposit();
+            deposit(requestDeposit);
         case "4":
             mainMenu();
         //case (selection != "1" && selection != "2" && selection != "3" && selection != "4"):

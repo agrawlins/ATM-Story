@@ -6,7 +6,7 @@ const {wallet} = require('./wallet');
 
 //Once called, begin account menu
 function getBalance(balance){
-    console.log(`Your current balance is ${balance}`);
+    return console.log(`Your current balance is ${balance}`);
 }
 
 function makeWithdraw(){
